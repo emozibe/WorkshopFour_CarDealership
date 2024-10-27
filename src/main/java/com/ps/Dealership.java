@@ -18,14 +18,6 @@ public class Dealership {
         this.inventory = new ArrayList<>();
     }
 
-    public void addVehicle(Vehicle vehicle) {
-        inventory.add(vehicle);
-    }
-
-    public ArrayList<Vehicle> getAllVehicles() {
-        return inventory;
-    }
-
     public ArrayList<Vehicle> getVehiclesByPrice(double min, double max) {
         return null;
     }
@@ -50,7 +42,33 @@ public class Dealership {
         return null;
     }
 
-    public void removeVehicle(Vehicle vehicle) {
+    public ArrayList<Vehicle> getAllVehicles() {
+        return this.inventory;
+    }
 
+    public void addVehicle(Vehicle vehicle) {
+        this.inventory.add(vehicle);
+    }
+
+    public void removeVehicle(Vehicle vehicle) {
+        this.inventory.remove(vehicle);
+    }
+
+    public String getName() {
+        return name;
+    } public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAddress() {
+        return address;
+    } public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhone() {
+        return phone;
+    } public void setPhone(String phone) {
+        this.phone = phone;
     }
 }
