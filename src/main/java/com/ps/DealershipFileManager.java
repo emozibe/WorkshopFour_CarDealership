@@ -50,15 +50,17 @@ public class DealershipFileManager {
     public static void saveDealership(Dealership dealership) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter("inventory.csv"))) {
 
-            String firstLine = String.format("%s|%s|%s\n",
+            String firstLine = String.format("%s|%s|%s",
                     dealership.getName(),
                     dealership.getAddress(),
                     dealership.getPhone());
             bw.write(firstLine);
+            bw.newLine();
 
             List<Vehicle> vehicles = dealership.getAllVehicles();
-            for (Vehicle vehicle : vehicles) {
-                String vehicleLine = String.format("%d|%d|%s|%s|%s|%s|%d|%.2f\n",
+            for (int i = 0; i < vehicles.size(); i++) {
+                Vehicle vehicle = vehicles.get(i);
+                String vehicleLine = String.format("%d|%d|%s|%s|%s|%s|%d|%.2f",
                         vehicle.getVin(),
                         vehicle.getYear(),
                         vehicle.getMake(),
@@ -69,6 +71,10 @@ public class DealershipFileManager {
                         vehicle.getPrice()
                 );
                 bw.write(vehicleLine);
+
+                if (i < vehicles.size() - 1) {
+                    bw.newLine();
+                }
             }
 
         } catch (Exception e) {
